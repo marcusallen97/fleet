@@ -187,6 +187,7 @@ func (ds *Datastore) CreateOrder(ctx context.Context, order *types.Order, author
 		}
 		lastInsertID, _ = res.LastInsertId() // can never fail for mysql
 		challenge.ID = uint(lastInsertID)
+		challenge.ACMEAuthorizationID = authorization.ID
 
 		return nil
 	}, ds.logger)
