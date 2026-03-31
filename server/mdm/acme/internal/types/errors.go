@@ -193,12 +193,32 @@ func AuthorizationDoesNotExistError(detail string) *ACMEError {
 	}
 }
 
+// Custom Fleet error code, as RFC does not document what to return.
 func ChallengeDoesNotExistError(detail string) *ACMEError {
 	return &ACMEError{
 		Type:       fleetCustomErrorsURI + "challengeDoesNotExist",
 		Title:      "The specified challenge does not exist for the authorization",
 		Detail:     detail,
 		StatusCode: http.StatusNotFound,
+	}
+}
+
+func InvalidChallengeStatusError(detail string) *ACMEError {
+	return &ACMEError{
+		Type:       fleetCustomErrorsURI + "invalidChallengeStatus",
+		Title:      "The challenge is not in a valid status for the attempted operation",
+		Detail:     detail,
+		StatusCode: http.StatusBadRequest,
+	}
+}
+
+// Draft ACME device attest RFC https://datatracker.ietf.org/doc/html/draft-acme-device-attest-01#name-new-error-types
+func BadAttestationStatementError(detail string) *ACMEError {
+	return &ACMEError{
+		Type:       acmeErrorsURN + "badAttestationStatement",
+		Title:      "The attestation statement provided by the client was unacceptable",
+		Detail:     detail,
+		StatusCode: http.StatusBadRequest,
 	}
 }
 

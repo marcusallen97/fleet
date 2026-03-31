@@ -10,4 +10,5 @@ import (
 // bounded context.
 type DataProviders interface {
 	AppConfig(ctx context.Context) (*fleet.AppConfig, error)
+	GetHostDEPAssignmentsBySerial(ctx context.Context, serial string) ([]*fleet.HostDEPAssignment, error)
 }
