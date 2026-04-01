@@ -9,7 +9,7 @@ import InputField from "components/forms/fields/InputField";
 
 const generateUrl = (serverUrl: string, enrollSecret: string) => {
   return `${serverUrl}/enroll?enroll_secret=${encodeURIComponent(
-    enrollSecret
+    enrollSecret,
   )}`;
 };
 
@@ -46,7 +46,7 @@ const IosIpadosPanel = ({ enrollSecret }: IosIpadosPanelProps) => {
   return (
     <div className={baseClass}>
       <InputField
-        label="Send this to your end users:"
+        label="Enrollment instructions:"
         enableCopy
         readOnly
         inputWrapperClass={`${baseClass}__enroll-link`}
